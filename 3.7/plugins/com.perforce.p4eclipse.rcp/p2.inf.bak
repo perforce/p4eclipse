@@ -1,0 +1,45 @@
+instructions.configure=\
+  addRepository(type:0,location:http${#58}//eng-jteamlinux-vm.perforce.com/p4eclipse/latest/3.6/update);\
+  addRepository(type:1,location:http${#58}//eng-jteamlinux-vm.perforce.com/p4eclipse/latest/3.6/update);\
+  addRepository(type:0,location:http${#58}//download.eclipse.org/releases/helios);\
+  addRepository(type:1,location:http${#58}//download.eclipse.org/releases/helios);
+
+requires.1.namespace = org.eclipse.equinox.p2.iu
+requires.1.name = com.perforce.p4wsad.feature.group
+requires.1.range = [2010.1, 2011.2)
+
+requires.2.namespace = org.eclipse.equinox.p2.iu
+requires.2.name = com.perforce.p4wsad.charts.feature.group
+requires.2.range = [2010.1, 2011.2)
+
+requires.3.namespace = org.eclipse.equinox.p2.iu
+requires.3.name = com.perforce.p4wsad.folder.feature.group
+requires.3.range = [2010.1, 2011.2)
+
+requires.4.namespace = org.eclipse.equinox.p2.iu
+requires.4.name = com.perforce.p4wsad.c.galileo.feature.group
+requires.4.range = [2010.1, 2011.2)
+
+requires.5.namespace = org.eclipse.equinox.p2.iu
+requires.5.name = com.perforce.p4wsad.search.feature.group
+requires.5.range = [2010.1, 2011.2)
+
+requires.6.namespace = org.eclipse.equinox.p2.iu
+requires.6.name = com.perforce.p4wsad.java.galileo.feature.group
+requires.6.range = [2010.1, 2011.2)
+
+requires.7.namespace = org.eclipse.equinox.p2.iu
+requires.7.name = com.perforce.p4wsad.mylyn.feature.group
+requires.7.range = [2010.1, 2011.2)
+
+requires.8.namespace = org.eclipse.equinox.p2.iu
+requires.8.name = com.perforce.p4wsad.mergequest.feature.group
+requires.8.range = [2010.1, 2011.2)
+
+requires.9.namespace = org.eclipse.equinox.p2.iu
+requires.9.name = com.perforce.p4wsad.ruby.helios.feature.group
+requires.9.range = [2010.1, 2011.2)
+
+requires.10.namespace = org.eclipse.equinox.p2.iu
+requires.10.name = com.perforce.p4wsad.patch.feature.group
+requires.10.range = [2010.1, 2011.2)

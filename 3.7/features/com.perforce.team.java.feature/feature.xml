@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.perforce.team.java.galileo.feature"
+      label="P4 Java Time-lapse View Support (JDT Prerequisite)"
+      version="11.1.1.qualifier"
+      provider-name="Perforce Software"
+      plugin="com.perforce.team.branding">
+
+   <description>
+      This feature contains the P4 for Eclipse Java Time-Lapse view.
+   </description>
+
+   <license>
+      P4 for Eclipse is part of P4, The Fast Software Configuration Management System.
+For licensing, see https://www.perforce.com/manuals/p4eclipse/Content/P4Eclipse/license.statements.html.
+   </license>
+
+   <requires>
+      <import plugin="org.eclipse.jdt.core" version="3.5" match="greaterOrEqual"/>
+      <import feature="com.perforce.team.feature" version="0.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jdt.ui" version="3.5" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="com.perforce.team.ui.java.galileo"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

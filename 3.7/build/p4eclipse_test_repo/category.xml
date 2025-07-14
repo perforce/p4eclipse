@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="P4 for Eclipse update site" url="http://www.perforce.com/product/components/eclipse_plugin">
+      P4 for Eclipse is part of P4, The Fast Software Configuration Management System.
+      For licensing, see https://www.perforce.com/manuals/p4eclipse/Content/P4Eclipse/license.statements.html.
+   </description>
+   <feature url="features/com.perforce.tests.feature_0.0.0.jar" id="com.perforce.tests.feature" version="0.0.0">
+      <category name="P4 Team Provider Test (RCP)"/>
+   </feature>
+   <category-def name="P4 Team Provider Test (RCP)" label="P4 Team Provider Test (RCP)">
+      <description>
+         P4 for Eclipse Team Provider Test Bundles.
+      </description>
+   </category-def>
+</site>

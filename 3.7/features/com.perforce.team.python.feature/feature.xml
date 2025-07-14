@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.perforce.team.python.helios.feature"
+      label="P4 Python Time-lapse View Support (DLTK Prerequisite)"
+      version="11.1.1.qualifier"
+      provider-name="Perforce Software"
+      plugin="com.perforce.team.branding">
+
+   <description>
+      This feature contains the P4 for Eclipse Python Time-Lapse view.
+   </description>
+
+   <license>
+      P4 for Eclipse is part of P4, The Fast Software Configuration Management System.
+For licensing, see https://www.perforce.com/manuals/p4eclipse/Content/P4Eclipse/license.statements.html.
+   </license>
+
+   <url>
+      <discovery label="DLTK Update Site" url="http://download.eclipse.org/technology/dltk/updates-dev/5.8/"/>
+   </url>
+
+   <plugin id="org.eclipse.dltk.core" version="0.0.0" unpack="false"/>
+   <plugin id="org.eclipse.dltk.ui" version="0.0.0" unpack="false"/>
+   <plugin id="org.eclipse.dltk.python.ui" version="0.0.0" unpack="false"/>
+   <plugin id="org.eclipse.dltk.python.core" version="0.0.0" unpack="false"/>
+
+
+   <requires>
+      <import plugin="org.eclipse.dltk.core" version="0.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.dltk.ui" version="0.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.dltk.python.ui" version="0.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.dltk.python.core" version="0.0.0" match="greaterOrEqual"/>
+      <import feature="com.perforce.team.feature" version="0.0.0" match="greaterOrEqual"/>
+      <import plugin="org.antlr.runtime" version="0.0.0" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="com.perforce.team.ui.python.helios"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.antlr.runtime"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?>
+<target name="p4e-4.23.target" sequenceNumber="104">
+<locations>
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.dltk.core.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.dltk.core.sdk.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.dltk.python.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.dltk.python.sdk.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.dltk.ruby.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.dltk.ruby.sdk.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.dltk.core" version="5.6.0.201608300412"/>
+<unit id="org.eclipse.dltk.python.core" version="5.6.0.201608300412"/>
+<unit id="org.eclipse.dltk.ui" version="5.6.0.201608300412"/>
+<unit id="org.eclipse.dltk.python.ui" version="5.6.0.201608300412"/>
+<unit id="org.eclipse.dltk.ruby.core" version="5.6.0.201608300412"/>
+<unit id="org.eclipse.dltk.ruby.ui" version="5.6.0.201608300412"/>
+
+<repository location="https://download.eclipse.org/technology/dltk/updates-dev/5.6/"/>
+
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.swtbot.eclipse.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.swtbot.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.swtbot.eclipse.test.junit.feature.group" version="0.0.0"/>
+<repository location="https://download.eclipse.org/technology/swtbot/releases/latest/"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+
+<unit id="org.apache.ant.source" version="0.0.0"/>
+<unit id="org.apache.ant" version="0.0.0"/>
+<unit id="org.apache.commons.compress" version="0.0.0"/>
+<unit id="org.apache.commons.compress.source" version="0.0.0"/>
+<unit id="org.apache.log4j" version="0.0.0"/>
+<unit id="org.apache.log4j.source" version="0.0.0"/>
+<unit id="org.kohsuke.args4j" version="0.0.0"/>
+<unit id="org.kohsuke.args4j.source" version="0.0.0"/>
+<unit id="org.hamcrest.core" version="0.0.0"/>
+<unit id="org.hamcrest.core.source" version="0.0.0"/>
+<unit id="org.hamcrest.integration.source" version="0.0.0"/>
+<unit id="org.hamcrest.generator" version="0.0.0"/>
+<unit id="org.hamcrest.generator.source" version="0.0.0"/>
+<unit id="org.hamcrest.integration" version="0.0.0"/>
+<unit id="org.hamcrest.library" version="0.0.0"/>
+<unit id="org.hamcrest.library.source" version="0.0.0"/>
+<unit id="org.hamcrest" version="0.0.0"/>
+<unit id="org.hamcrest.text" version="0.0.0"/>
+<unit id="org.hamcrest.text.source" version="0.0.0"/>
+<unit id="javaewah" version="0.0.0"/>
+<unit id="javaewah.source" version="0.0.0"/>
+<unit id="org.objenesis" version="0.0.0"/>
+<unit id="org.objenesis.source" version="0.0.0"/>
+<unit id="org.mockito" version="0.0.0"/>
+<unit id="org.mockito.source" version="0.0.0"/>
+<unit id="com.jcraft.jsch" version="0.0.0"/>
+<unit id="com.jcraft.jsch.source" version="0.0.0"/>
+<unit id="org.junit" version="0.0.0"/>
+<unit id="org.junit.source" version="0.0.0"/>
+<unit id="com.google.protobuf" version="0.0.0"/>
+<unit id="com.google.protobuf.source" version="0.0.0"/>
+<unit id="com.google.guava" version="0.0.0"/>
+<unit id="javax.servlet" version="0.0.0"/>
+<unit id="javax.servlet.source" version="0.0.0"/>
+<repository location="https://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository/"/>
+</location>
+
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.antlr.runtime" version="3.0.0.v200803061811"/>
+<unit id="org.antlr.runtime.source" version="3.0.0.v200803061811"/>
+<unit id="javax.xml.bind" version="0.0.0"/>
+<repository location="https://download.eclipse.org/tools/orbit/downloads/drops/R20160221192158/repository/"/>
+</location>
+
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="jakarta.xml.bind" version="0.0.0"/>
+<unit id="com.sun.xml.bind" version="2.2.0.v20201118-1845"/>
+<repository location="https://download.eclipse.org/tools/orbit/downloads/drops/R20201130205003/repository/"/>
+</location>
+
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+<repository location="https://download.eclipse.org/releases/2020-09/"/>
+<unit id="org.eclipse.jdt.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.jdt.source.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.platform.sdk" version="0.0.0"/>
+<!--Required for Birt.  -->
+<unit id="org.eclipse.jetty.server" version="0.0.0"/>
+<unit id="org.eclipse.jetty.util" version="0.0.0"/>
+<unit id="org.eclipse.jetty.http" version="0.0.0"/>
+<unit id="org.eclipse.jetty.io" version="0.0.0"/>
+<unit id="org.eclipse.jetty.security" version="0.0.0"/>
+<unit id="org.eclipse.jetty.servlet" version="0.0.0"/>
+<unit id="org.eclipse.jetty.xml" version="0.0.0"/>
+</location>
+
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.birt.chart.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.birt.source.feature.group" version="0.0.0"/>
+<repository location="https://download.eclipse.org/birt/update-site/4.6/"/>
+</location>
+
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.mylyn.commons.sdk.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.gef.sdk.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.emf.compare.egit.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.mylyn.versions.sdk.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.mylyn.reviews.sdk.feature.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.equinox.core.sdk.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.mylyn.context.sdk.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.mylyn.builds.sdk.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.sdk.ide" version="0.0.0"/>
+
+<unit id="org.eclipse.cdt.platform.source.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.cdt.sdk.feature.group" version="0.0.0"/>
+<repository location="https://download.eclipse.org/releases/2020-09/"/>
+</location>
+
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.team.svn.feature.group" version="4.0.5.I20170425-1700"/>
+<repository location="https://download.eclipse.org/technology/subversive/4.0/update-site/"/>
+</location>
+</locations>
+</target>

@@ -1,0 +1,22 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Package Files #
+*.jar
+*.zip
+*.tar.gz
+
+# Eclipse IDE
+.metadata
+bin/
+tmp/
+target/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store

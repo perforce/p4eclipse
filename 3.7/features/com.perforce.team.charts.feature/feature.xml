@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.perforce.team.charts.feature"
+      label="P4 Charting Support (BIRT Prerequisite)"
+      version="11.1.1.qualifier"
+      provider-name="Perforce Software"
+      plugin="com.perforce.team.branding">
+
+   <description>
+      This feature contains the P4 for Eclipse Charting plug-in.
+   </description>
+
+   <license>
+      P4 for Eclipse is part of P4, The Fast Software Configuration Management System.
+For licensing, see https://www.perforce.com/manuals/p4eclipse/Content/P4Eclipse/license.statements.html.
+   </license>
+
+
+   <includes id="org.eclipse.birt.chart" version="0.0.0"/>
+   <plugin id="org.apache.batik.awt.util" version="1.14.0.v20210324-0332"/>
+   <plugin id="org.apache.batik.constants" version="1.14.0.v20210324-0332"/>
+   <plugin id="org.apache.batik.i18n" version="1.14.0.v20210324-0332"/>
+   <plugin id="org.apache.batik.anim" version="1.14.0.v20210324-0332"/>
+   <plugin id="org.apache.batik.gvt" version="1.14.0.v20210324-0332"/>
+   <plugin id="org.apache.batik.script" version="1.14.0.v20210324-0332"/>
+   <plugin id="org.w3c.dom.events" version="0.0.0"/>
+   <requires>
+      <import feature="com.perforce.team.feature" version="0.0.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.birt.chart" version="0.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="com.perforce.team.core"/>
+      <import plugin="com.perforce.team.ui"/>
+      <import plugin="com.perforce.team.ui.text"/>
+      <import plugin="org.eclipse.jface.text"/>
+      <import plugin="org.eclipse.ui.editors"/>
+      <import plugin="org.eclipse.team.core"/>
+      <import plugin="org.eclipse.ui.forms"/>
+   </requires>
+
+   
+
+</feature>

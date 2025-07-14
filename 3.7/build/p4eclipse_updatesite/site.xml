@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="P4 for Eclipse update site" url="http://www.perforce.com/product/components/eclipse_plugin">
+      P4 for Eclipse is part of P4, The Fast Software Configuration Management System.
+      For licensing, see https://www.perforce.com/manuals/p4eclipse/Content/P4Eclipse/license.statements.html.
+   </description>
+   <feature url="features/com.perforce.team.feature_0.0.0.jar" id="com.perforce.team.feature" version="0.0.0">
+      <category name="P4 Team Provider (Core)"/>
+   </feature>
+   <feature url="features/com.perforce.team.c.galileo.feature_0.0.0.jar" id="com.perforce.team.c.galileo.feature" version="0.0.0">
+      <category name="P4 Team Provider (Optional)"/>
+   </feature>
+   <feature url="features/com.perforce.team.charts.feature_0.0.0.jar" id="com.perforce.team.charts.feature" version="0.0.0">
+      <category name="P4 Team Provider (Optional)"/>
+   </feature>
+   <feature url="features/com.perforce.team.folder.feature_0.0.0.jar" id="com.perforce.team.folder.feature" version="0.0.0">
+      <category name="P4 Team Provider (Optional)"/>
+   </feature>
+   <feature url="features/com.perforce.team.java.galileo.feature_0.0.0.jar" id="com.perforce.team.java.galileo.feature" version="0.0.0">
+      <category name="P4 Team Provider (Optional)"/>
+   </feature>
+   <feature url="features/com.perforce.team.mergequest.feature_0.0.0.jar" id="com.perforce.team.mergequest.feature" version="0.0.0">
+      <category name="P4 Team Provider (Optional)"/>
+   </feature>
+   <feature url="features/com.perforce.team.mylyn.feature_0.0.0.jar" id="com.perforce.team.mylyn.feature" version="0.0.0">
+      <category name="P4 Team Provider (Optional)"/>
+   </feature>
+   <feature url="features/com.perforce.team.patch.feature_0.0.0.jar" id="com.perforce.team.patch.feature" version="0.0.0">
+      <category name="P4 Team Provider (Optional)"/>
+   </feature>
+   <feature url="features/com.perforce.team.search.feature_0.0.0.jar" id="com.perforce.team.search.feature" version="0.0.0">
+      <category name="P4 Team Provider (Optional)"/>
+   </feature>
+   <feature url="features/com.perforce.team.python.helios.feature_0.0.0.jar" id="com.perforce.team.python.helios.feature" version="0.0.0">
+      <category name="P4 Team Provider (Optional)"/>
+   </feature>
+   <feature url="features/com.perforce.team.ruby.helios.feature_0.0.0.jar" id="com.perforce.team.ruby.helios.feature" version="0.0.0">
+      <category name="P4 Team Provider (Optional)"/>
+   </feature>
+   <category-def name="P4 Team Provider (Core)" label="P4 Team Provider (Core)">
+      <description>
+         P4 for Eclipse Team Provider Core plugins. This will provider basic functions to interact with P4 server.
+      </description>
+   </category-def>
+   <category-def name="P4 Team Provider (Optional)" label="P4 Team Provider (Optional)">
+      <description>
+         Optional plugins.
+      </description>
+   </category-def>
+</site>

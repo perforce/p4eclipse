@@ -1,0 +1,30 @@
+version: '3'
+services:
+  p4.helix:
+    security_opt:
+      - seccomp:unconfined 
+    build: helix-p4d
+    hostname: p4
+    domainname: helix
+    env_file:
+      - p4.env
+    ports:
+      - 4000:1666
+    tty: true
+    
+  
+  swarm.helix:
+    security_opt:
+      - seccomp:unconfined
+    build: helix-swarm
+    hostname: swarm
+    domainname: helix
+    env_file:
+      - p4.env
+    ports:
+      - 5080:80
+    depends_on:
+      - p4.helix
+    tty: true
+    
+    

@@ -1,0 +1,142 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: com.perforce.team.core;singleton:=true
+Bundle-Version: 11.1.1.qualifier
+Bundle-Activator: com.perforce.team.core.PerforceProviderPlugin
+Bundle-Localization: plugin
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: %providerName
+Export-Package: com.perforce.p4java;uses:="com.perforce.p4java.server.
+ callback",com.perforce.p4java.admin;uses:="com.perforce.p4java.core",
+ com.perforce.p4java.client; uses:="com.perforce.p4java.core,  com.per
+ force.p4java.server.callback,  com.perforce.p4java.impl.generic.clien
+ t,  com.perforce.p4java.option.client,  com.perforce.p4java.core.file
+ ,  com.perforce.p4java.server,  com.perforce.p4java.option.server",co
+ m.perforce.p4java.client.delegator,com.perforce.p4java.core; uses:="c
+ om.perforce.p4java.client,  com.perforce.p4java.server.callback,  com
+ .perforce.p4java.option.changelist,  com.perforce.p4java.option,  com
+ .perforce.p4java.core.file,  com.perforce.p4java.server,  com.perforc
+ e.p4java.option.server",com.perforce.p4java.core.file;uses:="com.perf
+ orce.p4java.core,com.perforce.p4java.impl.generic.core.file,com.perfo
+ rce.p4java.option.server",com.perforce.p4java.exception,com.perforce.
+ p4java.impl.generic.admin;uses:="com.perforce.p4java.admin,com.perfor
+ ce.p4java.impl.generic.core",com.perforce.p4java.impl.generic.client;
+  uses:="com.perforce.p4java.core,  com.perforce.p4java.impl.mapbased.
+ rpc.sys,  com.perforce.p4java.client,  com.perforce.p4java.impl.gener
+ ic.core",com.perforce.p4java.impl.generic.core; uses:="com.perforce.p
+ 4java.option.changelist,  com.perforce.p4java.option,  com.perforce.p
+ 4java.impl.mapbased.server,  com.perforce.p4java.core.file,  com.perf
+ orce.p4java.admin,  com.perforce.p4java.option.server,  com.perforce.
+ p4java.core,  com.perforce.p4java.client,  com.perforce.p4java.server
+ .callback,  com.perforce.p4java.server",com.perforce.p4java.impl.gene
+ ric.core.file; uses:="com.perforce.p4java.client,  com.perforce.p4jav
+ a.core.file,  com.perforce.p4java.server,  com.perforce.p4java.impl.g
+ eneric.core,  com.perforce.p4java.option.server",com.perforce.p4java.
+ impl.generic.sys,com.perforce.p4java.impl.mapbased,com.perforce.p4jav
+ a.impl.mapbased.client; uses:="com.perforce.p4java.impl.generic.clien
+ t,  com.perforce.p4java.core.file,  com.perforce.p4java.impl.generic.
+ core,  com.perforce.p4java.option.server,  com.perforce.p4java.core, 
+  com.perforce.p4java.client,  com.perforce.p4java.server.callback,  c
+ om.perforce.p4java.option.client,  com.perforce.p4java.server",com.pe
+ rforce.p4java.impl.mapbased.rpc; uses:="com.perforce.p4java.impl.mapb
+ ased.rpc.packet,  com.perforce.p4java.impl.mapbased.rpc.func.proto,  
+ com.perforce.p4java.option,  com.perforce.p4java.impl.mapbased.server
+ ,  com.perforce.p4java.option.server,  com.perforce.p4java.impl.mapba
+ sed.rpc.func.client,  com.perforce.p4java.impl.mapbased.rpc.helper,  
+ com.perforce.p4java.impl.mapbased.rpc.connection,  com.perforce.p4jav
+ a.server.callback,  com.perforce.p4java.impl.mapbased.rpc.packet.help
+ er,  com.perforce.p4java.impl.mapbased.rpc.stream,  com.perforce.p4ja
+ va.server",com.perforce.p4java.impl.mapbased.rpc.connection; uses:="c
+ om.perforce.p4java.impl.mapbased.rpc.packet,  com.perforce.p4java.imp
+ l.mapbased.rpc,  com.perforce.p4java.server.callback,  com.perforce.p
+ 4java.impl.mapbased.rpc.packet.helper",com.perforce.p4java.impl.mapba
+ sed.rpc.func,com.perforce.p4java.impl.mapbased.rpc.func.client; uses:
+ ="com.perforce.p4java.impl.mapbased.rpc.packet,  com.perforce.p4java.
+ impl.mapbased.rpc.func,  com.perforce.p4java.impl.mapbased.rpc.connec
+ tion,  com.perforce.p4java.impl.mapbased.rpc,  com.perforce.p4java.im
+ pl.mapbased.rpc.sys,  com.perforce.p4java.server.callback,  com.perfo
+ rce.p4java.messages",com.perforce.p4java.impl.mapbased.rpc.func.helpe
+ r;uses:="com.perforce.p4java.common.quantity,com.perforce.p4java.impl
+ .generic.client",com.perforce.p4java.impl.mapbased.rpc.func.proto; us
+ es:="com.perforce.p4java.impl.mapbased.rpc.packet,  com.perforce.p4ja
+ va.impl.mapbased.rpc.connection,  com.perforce.p4java.impl.mapbased.r
+ pc,  com.perforce.p4java.impl.mapbased.rpc.func",com.perforce.p4java.
+ impl.mapbased.rpc.func.user,com.perforce.p4java.impl.mapbased.rpc.msg
+ ;uses:="com.perforce.p4java.impl.mapbased.rpc.func.client",com.perfor
+ ce.p4java.impl.mapbased.rpc.packet; uses:="com.perforce.p4java.impl.m
+ apbased.rpc.func.proto,  com.perforce.p4java.impl.mapbased.rpc,  com.
+ perforce.p4java.impl.mapbased.rpc.connection,  com.perforce.p4java.se
+ rver.callback,  com.perforce.p4java.impl.mapbased.rpc.packet.helper, 
+  com.perforce.p4java.impl.mapbased.rpc.func",com.perforce.p4java.impl
+ .mapbased.rpc.packet.helper,com.perforce.p4java.impl.mapbased.rpc.str
+ eam; uses:="com.perforce.p4java.impl.mapbased.rpc.packet,  com.perfor
+ ce.p4java.impl.mapbased.rpc,  com.perforce.p4java.impl.mapbased.rpc.c
+ onnection,  com.perforce.p4java.server.callback,  com.perforce.p4java
+ .impl.mapbased.rpc.packet.helper,  javax.net.ssl",com.perforce.p4java
+ .impl.mapbased.rpc.sys; uses:="com.perforce.p4java.impl.generic.clien
+ t,  com.perforce.p4java.impl.mapbased.rpc.func.helper,  com.perforce.
+ p4java,  com.perforce.p4java.impl.mapbased.rpc.msg",com.perforce.p4ja
+ va.impl.mapbased.rpc.sys.helper;uses:="com.perforce.p4java.impl.gener
+ ic.sys,com.perforce.p4java.impl.mapbased.rpc.sys",com.perforce.p4java
+ .impl.mapbased.server; uses:="com.perforce.p4java.option,  com.perfor
+ ce.p4java.core.file,  com.perforce.p4java.admin,  com.perforce.p4java
+ .option.server,  com.perforce.p4java.core,  com.perforce.p4java.clien
+ t,  com.perforce.p4java.server.callback,  com.perforce.p4java.server"
+ ,com.perforce.p4java.impl.mapbased.server.cmd,com.perforce.p4java.opt
+ ion;uses:="new com.perforce.p4java.option,com.perforce.p4java.server"
+ ,com.perforce.p4java.option.changelist;uses:="com.perforce.p4java.opt
+ ion,com.perforce.p4java.server",com.perforce.p4java.option.client;use
+ s:="com.perforce.p4java.option,com.perforce.p4java.server",com.perfor
+ ce.p4java.option.server; uses:="com.perforce.p4java.core,  com.perfor
+ ce.p4java.option,  com.perforce.p4java.core.file,  com.perforce.p4jav
+ a.server",com.perforce.p4java.server; uses:="com.perforce.p4java.opti
+ on,  com.perforce.p4java.core.file,  com.perforce.p4java.server.deleg
+ ator,  com.perforce.p4java.option.server,  com.perforce.p4java.impl.g
+ eneric.sys,  com.perforce.p4java.core,  com.perforce.p4java.server.ca
+ llback,  com.perforce.p4java.client",com.perforce.p4java.server.callb
+ ack,com.perforce.p4java.server.delegator,com.perforce.team.core; uses
+ :="org.eclipse.core.resources.team,  org.apache.commons.lang3.builder
+ ,  com.perforce.p4java.impl.generic.client,  com.perforce.team.core.p
+ 4java,  org.eclipse.team.core,  com.perforce.p4java.core.file,  org.o
+ sgi.framework,  org.eclipse.core.runtime,  com.perforce.p4java.client
+ ,  com.perforce.p4java.server.callback,  org.eclipse.core.resources, 
+  com.perforce.p4java.server",com.perforce.team.core.extensions,com.pe
+ rforce.team.core.map,com.perforce.team.core.p4java; uses:="com.perfor
+ ce.p4java.exception,  com.perforce.team.core,  com.perforce.p4java.co
+ re.file,  org.eclipse.team.core.history,  com.perforce.p4java.option.
+ server,  org.eclipse.core.runtime.jobs,  org.eclipse.core.runtime,  c
+ om.perforce.p4java.impl.generic.sys,  org.eclipse.osgi.util,  com.per
+ force.p4java.core,  com.perforce.p4java.client,  com.perforce.p4java.
+ server.callback,  com.perforce.p4java.option.client,  org.eclipse.cor
+ e.resources,  com.perforce.p4java.server,  org.eclipse.team.core.hist
+ ory.provider",com.perforce.team.core.p4java.builder; uses:="org.eclip
+ se.osgi.util,  com.perforce.p4java.client,  com.perforce.team.core.p4
+ java,  com.perforce.team.core",com.perforce.team.core.p4java.synchron
+ ize; uses:="org.eclipse.team.internal.core.subscribers,  com.perforce
+ .team.core.p4java,  org.eclipse.team.core.variants,  org.eclipse.team
+ .core.diff,  org.eclipse.team.core.synchronize,  org.eclipse.core.run
+ time,  org.eclipse.osgi.util,  org.osgi.service.prefs,  org.eclipse.t
+ eam.core.subscribers,  org.eclipse.core.resources",org.apache.commons
+ .lang3;uses:="org.apache.commons.lang3.builder,org.apache.commons.lan
+ g3.text.translate",org.apache.commons.lang3.builder;uses:="org.apache
+ .commons.lang3.tuple",org.apache.commons.lang3.concurrent;uses:="org.
+ apache.commons.lang3.builder,new org.apache.commons.lang3.concurrent"
+ ,org.apache.commons.lang3.event,org.apache.commons.lang3.exception,or
+ g.apache.commons.lang3.math,org.apache.commons.lang3.mutable,org.apac
+ he.commons.lang3.reflect,org.apache.commons.lang3.text,org.apache.com
+ mons.lang3.text.translate,org.apache.commons.lang3.time,org.apache.co
+ mmons.lang3.tuple
+Bundle-ClassPath: .,
+ libraries/commons-io-2.17.0.jar,
+ libraries/commons-lang3-3.12.0.jar,
+ libraries/jzlib-1.1.3.jar,
+ libraries/p4java-2025.1.2785811.jar
+Require-Bundle: org.eclipse.team.core,
+ org.eclipse.core.runtime,
+ org.eclipse.core.filesystem,
+ org.eclipse.core.resources,
+ org.eclipse.core.filebuffers,
+ org.eclipse.equinox.security;visibility:=reexport,
+ org.eclipse.core.databinding
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
