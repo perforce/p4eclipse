@@ -4,11 +4,6 @@
 # Log file
 *.log
 
-# Package Files #
-*.jar
-*.zip
-*.tar.gz
-
 # Eclipse IDE
 .metadata
 bin/
