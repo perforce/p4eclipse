@@ -6,7 +6,7 @@
 	<groupId>com.perforce</groupId>
 	<artifactId>p4eclipse-parent</artifactId>
 	<version>11.1.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
+	<packaging>pom</packaging> 
 	<!-- this is the parent POM from which all modules inherit common settings -->
 	<properties>
 		<tycho-version>2.7.5</tycho-version>

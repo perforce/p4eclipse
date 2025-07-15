@@ -13,7 +13,7 @@ OS=${OSTYPE//[0-9.]/}
 : ${VER:="2017.1"}
 : ${CHANGE:="377088"}
 : ${PROP:="-Dmaven.test.failure.ignore=true -Dmaven.test.error.ignore=true --batch-mode"}
-: ${MAVEN_OPTS:='-Xmx1024m -XX:MaxPermSize=128m'}
+: ${MAVEN_OPTS:='-Xmx1024m -XX:MaxMetaspaceSize=128m'}
 : ${SIGN_JAR:="no"}
 : ${UPDATE_VERSION:="no"}
 : ${TYCHO_VERSION:="0.20.0"}
