@@ -33,13 +33,13 @@ Arguments:
 
 Options:
     -t, --target PLATFORM    Target platform (default: p4e-428)
-    -p, --p2repo URL         P2 repository URL (default: Eclipse 2023-06)
+    -p, --p2repo URL         P2 repository URL (default: https://download.eclipse.org/releases/2023-06/)
     -h, --help               Show this help message
 
 Examples:
   $0 11.1.1-SNAPSHOT
-  $0 11.1.1-SNAPSHOT -t p4e-43 -p https://download.eclipse.org/releases/neon/
-  $0 12.0.0-RC1 --target p4e-44 --p2repo https://download.eclipse.org/releases/oxygen/
+  $0 11.1.1-SNAPSHOT -t p4e-428 -p https://download.eclipse.org/releases/2023-06/
+  $0 12.0.0-RC1 --target p4e-428--p2repo https://download.eclipse.org/releases/2023-06/
 
 Steps: prerequisites → set version → process sources → build → test
 EOF
