@@ -29,17 +29,25 @@ show_usage() {
 Usage: $0 <version> [options]
 
 Arguments:
-    version     Version to set for the build (e.g., 11.1.1-SNAPSHOT)
+    version     Version in X.Y.Z or X.Y.Z-SNAPSHOT format
 
 Options:
     -t, --target PLATFORM    Target platform (default: p4e-428)
     -p, --p2repo URL         P2 repository URL (default: https://download.eclipse.org/releases/2023-06/)
+    --skip-tests             Skip running tests after build
     -h, --help               Show this help message
 
+Note: --target and --p2repo must be used together (both or neither)
+
 Examples:
-  $0 11.1.1-SNAPSHOT
-  $0 11.1.1-SNAPSHOT -t p4e-428 -p https://download.eclipse.org/releases/2023-06/
-  $0 12.0.0-RC1 --target p4e-428--p2repo https://download.eclipse.org/releases/2023-06/
+  $0 12.0.0-SNAPSHOT
+  $0 2025.1.1 --target p4e-428 --p2repo https://download.eclipse.org/releases/2023-06/
+  $0 12.0.0-SNAPSHOT --skip-tests
+  $0 2025.1.1 --target p4e-428 --p2repo https://example.com/ --skip-tests
+
+Valid Version Formats:
+  - X.Y.Z-SNAPSHOT (e.g., 12.0.0-SNAPSHOT)
+  - X.Y.Z (e.g., 2025.1.1, 12.1.0)
 
 Steps: prerequisites → set version → process sources → build → test
 EOF
@@ -64,8 +72,15 @@ validate_version() {
     [[ $# -ge 1 ]] || { show_usage; exit 1; }
     [[ -n "$1" ]] || error "Version cannot be empty"
     
-    if [[ ! "$1" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[A-Za-z0-9]+)?$ ]]; then
-        warn "Non-standard version format: $1 (expected: X.Y.Z or X.Y.Z-QUALIFIER)"
+    # Only allow two specific formats:
+    # 1. X.Y.Z-SNAPSHOT (e.g., 12.0.0-SNAPSHOT)
+    # 2. X.Y.Z with two dots (e.g., 2025.1.1)
+    if [[ ! "$1" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-SNAPSHOT)?$ ]]; then
+        error "Invalid version format: $1
+Only two formats allowed:
+  - X.Y.Z-SNAPSHOT (e.g., 12.0.0-SNAPSHOT)
+  - X.Y.Z (e.g., 2025.1.1)
+Examples: 12.0.0-SNAPSHOT, 2025.1.1, 12.1.0"
     fi
 }
 
@@ -74,18 +89,27 @@ parse_arguments() {
     local version=""
     local target_platform="$TARGET_PLATFORM"
     local p2_repo_url="$P2_REPO_URL"
+    local skip_tests="false"
+    local target_specified="false"
+    local p2repo_specified="false"
     
     while [[ $# -gt 0 ]]; do
         case $1 in
             -t|--target)
                 [[ -n "$2" ]] || error "Target platform cannot be empty"
                 target_platform="$2"
+                target_specified="true"
                 shift 2
                 ;;
             -p|--p2repo)
                 [[ -n "$2" ]] || error "P2 repository URL cannot be empty"
                 p2_repo_url="$2"
+                p2repo_specified="true"
                 shift 2
+                ;;
+            --skip-tests)
+                skip_tests="true"
+                shift
                 ;;
             -h|--help)
                 show_usage
@@ -107,7 +131,16 @@ parse_arguments() {
     
     [[ -n "$version" ]] || error "Version is required"
     
-    echo "$version|$target_platform|$p2_repo_url"
+    # Validate that --target and --p2repo are used together
+    if [[ "$target_specified" == "true" && "$p2repo_specified" == "false" ]]; then
+        error "--target specified but --p2repo is missing. Both --target and --p2repo must be used together."
+    fi
+    
+    if [[ "$p2repo_specified" == "true" && "$target_specified" == "false" ]]; then
+        error "--p2repo specified but --target is missing. Both --target and --p2repo must be used together."
+    fi
+    
+    echo "$version|$target_platform|$p2_repo_url|$skip_tests"
 }
 
 set_version() {
@@ -156,7 +189,7 @@ run_tests() {
 main() {
     local args
     args=$(parse_arguments "$@")
-    IFS='|' read -r version target_platform p2_repo_url <<< "$args"
+    IFS='|' read -r version target_platform p2_repo_url skip_tests <<< "$args"
     
     log "Building P4Eclipse ${version} with Tycho ${TYCHO_VERSION}"
     log "Using target: $target_platform, P2 repo: $p2_repo_url"
@@ -166,13 +199,20 @@ main() {
     set_version "${version}"
     process_sources
     build_project "$target_platform" "$p2_repo_url"
-    run_tests
+    
+    if [[ "$skip_tests" == "true" ]]; then
+        warn "Skipping tests as requested"
+    else
+        run_tests
+    fi
     
     success "Build completed! Artifacts in target directories"
 }
 
 # Entry point
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    # Handle help and no arguments before calling main
     [[ $# -eq 0 ]] && { show_usage; exit 0; }
+    [[ "$1" == "-h" || "$1" == "--help" ]] && { show_usage; exit 0; }
     main "$@"
 fi

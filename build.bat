@@ -15,6 +15,7 @@ set TYCHO_VERSION=%DEFAULT_TYCHO_VERSION%
 set QUALIFIER=%DEFAULT_QUALIFIER%
 set TARGET_PLATFORM=%DEFAULT_TARGET_PLATFORM%
 set P2_REPO_URL=%DEFAULT_P2_REPO_URL%
+set SKIP_TESTS=false
 
 REM Paths
 set SCRIPT_DIR=%~dp0
@@ -44,7 +45,13 @@ call :check_prerequisites
 call :set_version "%VERSION%"
 call :process_sources
 call :build_project
-call :run_tests
+
+if "%SKIP_TESTS%"=="true" (
+    call :warn "Skipping tests as requested"
+) else (
+    call :run_tests
+)
+
 call :success "Build completed! Artifacts in target directories"
 goto end
 
@@ -52,17 +59,25 @@ goto end
 echo Usage: %0 ^<version^> [options]
 echo.
 echo Arguments:
-echo   version                  Version to build (e.g., 11.1.1-SNAPSHOT)
+echo   version     Version in X.Y.Z or X.Y.Z-SNAPSHOT format
 echo.
 echo Options:
 echo   -t, --target PLATFORM    Target platform (default: p4e-428)
-echo   -p, --p2repo URL         P2 repository URL (default: Eclipse 2023-06)
+echo   -p, --p2repo URL         P2 repository URL (default: https://download.eclipse.org/releases/2023-06/)
+echo   --skip-tests             Skip running tests after build
 echo   -h, --help, /?           Show this help message
 echo.
+echo Note: --target and --p2repo must be used together (both or neither)
+echo.
 echo Examples:
-echo   %0 11.1.1-SNAPSHOT
-echo   %0 11.1.1-SNAPSHOT -t p4e-43 -p https://download.eclipse.org/releases/neon/
-echo   %0 12.0.0-RC1 --target p4e-44 --p2repo https://download.eclipse.org/releases/oxygen/
+echo   %0 12.0.0-SNAPSHOT
+echo   %0 2025.1.1 --target p4e-428 --p2repo https://download.eclipse.org/releases/2023-06/
+echo   %0 12.0.0-SNAPSHOT --skip-tests
+echo   %0 2025.1.1 --target p4e-428 --p2repo https://example.com/ --skip-tests
+echo.
+echo Valid Version Formats:
+echo   - X.Y.Z-SNAPSHOT (e.g., 12.0.0-SNAPSHOT)
+echo   - X.Y.Z (e.g., 2025.1.1, 12.1.0)
 echo.
 echo Steps: prerequisites ^-^> set version ^-^> process sources ^-^> build ^-^> test
 goto end
@@ -70,6 +85,8 @@ goto end
 :parse_arguments
 set EXPECT_TARGET=
 set EXPECT_P2REPO=
+set TARGET_SPECIFIED=false
+set P2REPO_SPECIFIED=false
 
 :parse_loop
 if "%~1"=="" goto parse_done
@@ -78,14 +95,24 @@ if "%~1"=="--help" goto show_usage
 if "%~1"=="/?" goto show_usage
 
 if defined EXPECT_TARGET (
+    if "%~1"=="" (
+        call :error "Target platform cannot be empty"
+        exit /b 1
+    )
     set TARGET_PLATFORM=%~1
+    set TARGET_SPECIFIED=true
     set EXPECT_TARGET=
     shift
     goto parse_loop
 )
 
 if defined EXPECT_P2REPO (
+    if "%~1"=="" (
+        call :error "P2 repository URL cannot be empty"
+        exit /b 1
+    )
     set P2_REPO_URL=%~1
+    set P2REPO_SPECIFIED=true
     set EXPECT_P2REPO=
     shift
     goto parse_loop
@@ -111,6 +138,18 @@ if "%~1"=="--p2repo" (
     shift
     goto parse_loop
 )
+if "%~1"=="--skip-tests" (
+    set SKIP_TESTS=true
+    shift
+    goto parse_loop
+)
+
+REM Check for unknown options
+echo %~1 | findstr /B /C:"-" >nul
+if not errorlevel 1 (
+    call :error "Unknown option: %~1"
+    exit /b 1
+)
 
 REM If not an option, assume it's the version
 if "%VERSION%"=="" (
@@ -124,6 +163,17 @@ shift
 goto parse_loop
 
 :parse_done
+REM Validate that --target and --p2repo are used together
+if "%TARGET_SPECIFIED%"=="true" if "%P2REPO_SPECIFIED%"=="false" (
+    call :error "--target specified but --p2repo is missing. Both --target and --p2repo must be used together."
+    exit /b 1
+)
+
+if "%P2REPO_SPECIFIED%"=="true" if "%TARGET_SPECIFIED%"=="false" (
+    call :error "--p2repo specified but --target is missing. Both --target and --p2repo must be used together."
+    exit /b 1
+)
+
 exit /b 0
 
 :validate_version
@@ -131,11 +181,21 @@ if "%~1"=="" (
     call :error "Version cannot be empty"
     exit /b 1
 )
-REM Basic version validation (simplified for batch)
-echo %~1 | findstr /R "^[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*" >nul
-if errorlevel 1 (
-    call :warn "Non-standard version format: %~1 (expected: X.Y.Z or X.Y.Z-QUALIFIER)"
-)
+REM Strict version validation - only allow X.Y.Z or X.Y.Z-SNAPSHOT
+echo %~1 | findstr /R "^[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*$" >nul
+if not errorlevel 1 goto validate_version_ok
+
+echo %~1 | findstr /R "^[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*-SNAPSHOT$" >nul
+if not errorlevel 1 goto validate_version_ok
+
+call :error "Invalid version format: %~1
+Only two formats allowed:
+  - X.Y.Z-SNAPSHOT (e.g., 12.0.0-SNAPSHOT)
+  - X.Y.Z (e.g., 2025.1.1)
+Examples: 12.0.0-SNAPSHOT, 2025.1.1, 12.1.0"
+exit /b 1
+
+:validate_version_ok
 exit /b 0
 
 :check_prerequisites

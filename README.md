@@ -14,6 +14,7 @@ P4Eclipse is an Eclipse plugin that provides integration with Perforce version c
         ```
     2. Run the build 
         ./build.sh 2025.1.4
+   
     **Expected output:**
         ```
         3.7/build/p4eclipse_updatesite/
@@ -21,21 +22,25 @@ P4Eclipse is an Eclipse plugin that provides integration with Perforce version c
         └── site.xml                  
         ```
 
-### For Build Commands
-```bash
-# Get help
-./build.sh --help
-```
+    **Examples to run build.sh:**
+        ```
+        ./build.sh 12.0.0-SNAPSHOT
+        ./build.sh 2025.1.1 --target p4e-428 --p2repo https://download.eclipse.org/releases/2023-06/
+        ./build.sh 12.0.0-SNAPSHOT --skip-tests
+        ./build.sh 2025.1.1 --target p4e-428 --p2repo https://example.com/ --skip-tests
+        ```
+
+*** To buils on windows use build.bat **
 
 ### Build Targets
 
 Available Eclipse target platforms (extensive list):
 
-- `p4e-432` - Eclipse 4.32 (2024-06) - **Latest**
-- `p4e-431` - Eclipse 4.31 (2024-03)
-- `p4e-430` - Eclipse 4.30 (2023-12)
-- `p4e-429` - Eclipse 4.29 (2023-09)
-- `p4e-428` - Eclipse 4.28 (2023-06) - **Default**
+- `p4e-432` - Eclipse 4.32 (https://download.eclipse.org/releases/2024-06/)
+- `p4e-431` - Eclipse 4.31 (https://download.eclipse.org/releases/2024-03/)
+- `p4e-430` - Eclipse 4.30 (https://download.eclipse.org/releases/2023-12/)
+- `p4e-429` - Eclipse 4.29 (https://download.eclipse.org/releases/2023-09/)
+- `p4e-428` - Eclipse 4.28 (https://download.eclipse.org/releases/2023-06) - **Default**
 
 
 ### Installation
