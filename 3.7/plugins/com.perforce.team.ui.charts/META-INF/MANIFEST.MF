@@ -19,7 +19,7 @@ Require-Bundle: org.eclipse.ui,
  com.perforce.team.ui.folder;resolution:=optional,
  com.perforce.team.core.folder;resolution:=optional
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: com.perforce.team.ui.charts,com.perforce.team.ui.chart
  s.annotate,com.perforce.team.ui.charts.diff,com.perforce.team.ui.char
  ts.preferences

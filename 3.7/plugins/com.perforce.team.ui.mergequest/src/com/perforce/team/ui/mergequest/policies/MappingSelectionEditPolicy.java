@@ -62,7 +62,8 @@ public class MappingSelectionEditPolicy extends ConnectionEndpointEditPolicy {
      * @see org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy#createSelectionHandles()
      */
     @Override
-    protected List<?> createSelectionHandles() {
+    @SuppressWarnings("rawtypes")
+    protected List createSelectionHandles() {
         List<Handle> handles = new ArrayList<Handle>();
         MappingEditPart owner = getEditPart();
         Mapping mapping = owner.getMapping();

@@ -8,7 +8,7 @@ Bundle-Activator: com.perforce.team.core.search.P4CoreSearchPlugin
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.core.runtime,
  com.perforce.team.core
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-ActivationPolicy: lazy
 Export-Package: com.perforce.team.core.search,com.perforce.team.core.s
  earch.query

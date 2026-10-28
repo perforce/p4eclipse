@@ -10,9 +10,9 @@ import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 
 import javax.net.ssl.SSLHandshakeException;
-import javax.xml.bind.DatatypeConverter;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -252,7 +252,7 @@ public class APIClient {
 			connection.setRequestMethod(method);
 
 			if (authScheme != null && authValue != null && !Boolean.parseBoolean(disableAuth)) {
-				String authEncoded = DatatypeConverter.printBase64Binary(authValue.getBytes());
+				String authEncoded = Base64.getEncoder().encodeToString(authValue.getBytes());
 				connection.setRequestProperty("Authorization", authScheme + " " + authEncoded);
 			}
 
@@ -292,7 +292,7 @@ public class APIClient {
 			connection.setRequestMethod(method);
 
 			if (authScheme != null && authValue != null) {
-				String authEncoded = DatatypeConverter.printBase64Binary(authValue.getBytes());
+				String authEncoded = Base64.getEncoder().encodeToString(authValue.getBytes());
 				connection.setRequestProperty("Authorization", authScheme + " " + authEncoded);
 			}
 

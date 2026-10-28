@@ -15,7 +15,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.compare,
  org.eclipse.team.ui,
  org.eclipse.ui.ide
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-ActivationPolicy: lazy
 Export-Package: com.perforce.team.ui.patch,com.perforce.team.ui.patch.
  actions,com.perforce.team.ui.patch.model,com.perforce.team.ui.patch.p

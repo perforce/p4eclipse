@@ -52,9 +52,7 @@
 				<configuration>
 					<!-- Kill test JVM if tests take more than 120 minutes (7200 seconds) to finish -->
 					<forkedProcessTimeoutInSeconds>7200</forkedProcessTimeoutInSeconds>
-					<!-- mac osx only -->
-					<testSuite>com.perforce.team.tests</testSuite>	   	
- 					<testClass>com.perforce.team.tests.CISuite</testClass>
+					<testClass>com.perforce.team.tests.CISuite</testClass>
 					<useUIThread>true</useUIThread>
 					<useUIHarness>true</useUIHarness>
 					<product>org.eclipse.sdk.ide</product>

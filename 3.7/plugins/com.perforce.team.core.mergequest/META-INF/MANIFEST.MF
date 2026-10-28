@@ -8,7 +8,7 @@ Bundle-Activator: com.perforce.team.core.mergequest.P4BranchGraphCorePlugin
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.core.runtime,
  com.perforce.team.core
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-ActivationPolicy: lazy
 Export-Package: com.perforce.team.core.mergequest,com.perforce.team.co
  re.mergequest.builder,com.perforce.team.core.mergequest.builder.xml,c

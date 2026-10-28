@@ -31,7 +31,7 @@ For licensing, see https://www.perforce.com/manuals/p4eclipse/Content/P4Eclipse/
       <import plugin="org.eclipse.dltk.python.ui" version="0.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.dltk.python.core" version="0.0.0" match="greaterOrEqual"/>
       <import feature="com.perforce.team.feature" version="0.0.0" match="greaterOrEqual"/>
-      <import plugin="org.antlr.runtime" version="0.0.0" match="greaterOrEqual"/>
+      <import plugin="org.antlr.runtime" version="3.0.0.v200803061811" match="perfect"/>
    </requires>
 
    <plugin
@@ -45,7 +45,7 @@ For licensing, see https://www.perforce.com/manuals/p4eclipse/Content/P4Eclipse/
          id="org.antlr.runtime"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="3.0.0.v200803061811"
          unpack="false"/>
 
 </feature>
