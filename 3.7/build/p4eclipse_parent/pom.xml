@@ -31,12 +31,6 @@
 		
 		<!-- local-p4eclipse-site>file://${basedir}/../../build/p4eclipse_updatesite/target/site</local-p4eclipse-site -->
 		
-		<!--  The default jar signing parameters -->
-		<jarsigner.keystore>/home/ali/.keystore</jarsigner.keystore>
-		<jarsigner.storepass>password</jarsigner.storepass>
-		<jarsigner.keypass>password</jarsigner.keypass>
-		<jarsigner.alias>p4eclipse</jarsigner.alias>
-		
 		<test.vmargs.default>-Xmx2048m -XX:MaxMetaspaceSize=256m -Dcom.perforce.team.ui.SUPPRESS_ERROR_DIALOGS=true -Dp4Path=${p4Path}</test.vmargs.default>
 		<targetPlatform>p4e-434</targetPlatform>
 	</properties>
