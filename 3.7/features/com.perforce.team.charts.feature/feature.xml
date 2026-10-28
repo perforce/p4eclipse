@@ -17,12 +17,12 @@ For licensing, see https://www.perforce.com/manuals/p4eclipse/Content/P4Eclipse/
 
 
    <includes id="org.eclipse.birt.chart" version="0.0.0"/>
-   <plugin id="org.apache.batik.awt.util" version="1.14.0.v20210324-0332"/>
-   <plugin id="org.apache.batik.constants" version="1.14.0.v20210324-0332"/>
-   <plugin id="org.apache.batik.i18n" version="1.14.0.v20210324-0332"/>
-   <plugin id="org.apache.batik.anim" version="1.14.0.v20210324-0332"/>
-   <plugin id="org.apache.batik.gvt" version="1.14.0.v20210324-0332"/>
-   <plugin id="org.apache.batik.script" version="1.14.0.v20210324-0332"/>
+   <plugin id="org.apache.batik.awt.util" version="0.0.0"/>
+   <plugin id="org.apache.batik.constants" version="0.0.0"/>
+   <plugin id="org.apache.batik.i18n" version="0.0.0"/>
+   <plugin id="org.apache.batik.anim" version="0.0.0"/>
+   <plugin id="org.apache.batik.gvt" version="0.0.0"/>
+   <plugin id="org.apache.batik.script" version="0.0.0"/>
    <plugin id="org.w3c.dom.events" version="0.0.0"/>
    <requires>
       <import feature="com.perforce.team.feature" version="0.0.0" match="greaterOrEqual"/>

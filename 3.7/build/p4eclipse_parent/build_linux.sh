@@ -8,12 +8,12 @@ SCRIPT=$0
 OS=${OSTYPE//[0-9.]/}
 
 : ${WORKSPACE:="$BASEDIR/../.."}
+WORKSPACE=$(cd "$WORKSPACE" && pwd)
 : ${MVN:="mvn"}
-: ${P4:="p4"}
 : ${VER:="2017.1"}
 : ${CHANGE:="377088"}
 : ${PROP:="-Dmaven.test.failure.ignore=true -Dmaven.test.error.ignore=true --batch-mode"}
-: ${MAVEN_OPTS:='-Xmx1024m -XX:MaxMetaspaceSize=128m'}
+: ${MAVEN_OPTS:='-Xmx1024m -XX:MaxPermSize=128m'}
 : ${SIGN_JAR:="no"}
 : ${UPDATE_VERSION:="no"}
 : ${TYCHO_VERSION:="0.20.0"}
@@ -26,7 +26,6 @@ usage () {
   echo "Reference to following environment variables (with example values):"
   echo "      WORKSPACE=parent_of_build_folder"
   echo "      MVN=/opt/apache-maven/bin/mvn"
-  echo "      P4=/opt/perforce/client/bin/p4"
   echo "      VER=2011.2"
   echo "      CHANGE=377088"
   echo ""
@@ -45,7 +44,6 @@ printSettings () {
   echo "[Environment variables]"
   echo "  WORKSPACE=$WORKSPACE"
   echo "  MVN=$MVN"
-  echo "  P4=$P4"
   echo "  VER=$VER"
   echo "  CHANGE=$CHANGE"
   echo "  MAVEN_OPTS=$MAVEN_OPTS"
@@ -109,7 +107,7 @@ testAlone () {
   
   buildUpdatesite 
 
-  cd $WORKSPACE; rm -rf site; mkdir site; cd site; unzip ../build/p4eclipse_updatesite/target/p4eclipse-updatesite*.zip; cd ../build/p4eclipse_parent;
+  cd $WORKSPACE; rm -rf site; mkdir site; cd site; unzip ../build/p4eclipse_updatesite/target/p4eclipse-updatesite-*-site.zip; cd ../build/p4eclipse_parent;
   $MVN clean verify --fail-at-end -P p4test -P codeCoverage $PROP -Dp4repo.url=file:$WORKSPACE/site
 }
 

@@ -20,6 +20,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -34,6 +35,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 
 
+import com.perforce.p4java.PropertyDefs;
 import com.perforce.p4java.client.IClient;
 import com.perforce.p4java.client.IClientSummary;
 import com.perforce.p4java.core.ChangelistStatus;
@@ -63,6 +65,7 @@ import com.perforce.p4java.impl.generic.core.Changelist;
 import com.perforce.p4java.impl.generic.core.Label;
 import com.perforce.p4java.impl.generic.core.file.FileSpec;
 import com.perforce.p4java.impl.mapbased.rpc.OneShotServerImpl;
+import com.perforce.p4java.impl.mapbased.rpc.RpcPropertyDefs;
 import com.perforce.p4java.impl.mapbased.server.Server;
 import com.perforce.p4java.option.client.CopyFilesOptions;
 import com.perforce.p4java.option.client.IntegrateFilesOptions;
@@ -477,7 +480,11 @@ public class P4Connection extends P4Resource implements IP4Connection {
 
 	public IServer createServer(IServer current) throws P4JavaException, URISyntaxException {
 		String serverUri = uriFromP4Port(this.params.getPortNoNull());
-		IServer newServer = P4Workspace.createServer(serverUri);
+		Properties props = P4Workspace.getWorkspace().getServerProperties();
+		props.put(PropertyDefs.FILESYS_UTF8BOM_SHORT_FORM, "0");
+		props.put(RpcPropertyDefs.RPC_SECURE_SOCKET_ENABLED_PROTOCOLS_NICK,
+				"TLSv1.3,TLSv1.2");
+		IServer newServer = P4Workspace.createServer(serverUri, props);
 
 		newServer.registerCallback(P4Workspace.getWorkspace().getCallback());
 		newServer.registerSSOCallback(P4Workspace.getWorkspace().getSSOCallback(), this.params.getPort());

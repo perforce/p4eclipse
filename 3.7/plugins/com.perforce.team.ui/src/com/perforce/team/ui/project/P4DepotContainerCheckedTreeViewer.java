@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.eclipse.core.commands.util.Tracing;
+import com.perforce.team.core.Tracing;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.CheckboxTreeViewer;
 import org.eclipse.jface.viewers.ICheckStateListener;

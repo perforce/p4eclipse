@@ -5,7 +5,7 @@ Bundle-SymbolicName: com.perforce.team.ui;singleton:=true
 Bundle-Version: 11.1.1.qualifier
 Bundle-Activator: com.perforce.team.ui.PerforceUIPlugin
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
 Require-Bundle: com.perforce.p4api,
@@ -28,8 +28,7 @@ Require-Bundle: com.perforce.p4api,
  org.eclipse.core.databinding.beans,
  org.eclipse.core.databinding.property,
  org.eclipse.core.databinding.observable,
- com.google.gson;bundle-version="2.2.4",
- jakarta.xml.bind
+ com.google.gson;bundle-version="2.2.4"
 Export-Package: com.perforce.team.ui,com.perforce.team.ui.actions,com.
  perforce.team.ui.branches,com.perforce.team.ui.changelists,com.perfor
  ce.team.ui.connection,com.perforce.team.ui.connection.mfa,com.perforc

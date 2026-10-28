@@ -12,7 +12,7 @@
 	     mvn -f replacep4java.xml process-resources -Dp4java-version="[2012,)"
 	 -->
 	<properties>
-		<p4java-version>2025.1.2785811</p4java-version>
+		<p4java-version>2026.1.2989454</p4java-version>
 		<repo>https://repo.maven.apache.org/maven2/</repo>
 		<targetprj>${project.basedir}/../../plugins/com.perforce.team.core</targetprj>
 	</properties>

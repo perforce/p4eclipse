@@ -6,7 +6,7 @@ import org.eclipse.swt.events.KeyListener;
 import java.text.MessageFormat;
 
 import org.apache.commons.lang3.StringUtils;
-import org.eclipse.core.commands.util.Tracing;
+import com.perforce.team.core.Tracing;
 import org.eclipse.core.databinding.observable.value.IValueChangeListener;
 import org.eclipse.core.databinding.observable.value.ValueChangeEvent;
 import org.eclipse.core.databinding.validation.ValidationStatus;

@@ -34,4 +34,4 @@ Export-Package: com.perforce.team.ui.mergequest,com.perforce.team.ui.m
  rforce.team.ui.mergequest.wizards.mapping,com.perforce.team.ui.mergeq
  uest.wizards.mapping.branch,com.perforce.team.ui.mergequest.wizards.m
  apping.depot
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-17

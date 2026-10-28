@@ -6,7 +6,7 @@ Bundle-SymbolicName: com.perforce.team.ui.python.helios;singleton:=true
 Bundle-Version: 11.1.1.qualifier
 Bundle-Activator: com.perforce.team.ui.python.PerforceUiPythonPlugin
 Bundle-Vendor: %providerName
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.antlr.runtime;bundle-version="[3.0.0,4.6.0)",
  org.eclipse.ui,

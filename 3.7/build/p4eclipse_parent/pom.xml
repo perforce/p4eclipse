@@ -9,7 +9,9 @@
 	<packaging>pom</packaging>
 	<!-- this is the parent POM from which all modules inherit common settings -->
 	<properties>
-		<tycho-version>2.7.5</tycho-version>
+		<!-- tycho-version>0.17.0</tycho-version -->
+		<!-- tycho-version>2.7.5</tycho-version -->
+		<tycho-version>4.0.13</tycho-version>
 		<tycho-groupid>org.eclipse.tycho</tycho-groupid>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -20,15 +22,37 @@
 
 		<maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format>
 		<forceContextQualifier>v${maven.build.timestamp}</forceContextQualifier>
+	
+		<!-- The p2 repositories url to build against -->
+		<p2repo.url>https://download.eclipse.org/releases/2023-06/</p2repo.url>
+	
 		<!-- The property pointing to the p4 command path, which will be used inside p4eclipse for diff, this will be used by testing see ClipboardTest.java-->
 		<p4Path>/opt/perforce/current/p4</p4Path>
 		
+		<!-- local-p4eclipse-site>file://${basedir}/../../build/p4eclipse_updatesite/target/site</local-p4eclipse-site -->
+		
 		<test.vmargs.default>-Xmx2048m -XX:MaxMetaspaceSize=256m -Dcom.perforce.team.ui.SUPPRESS_ERROR_DIALOGS=true -Dp4Path=${p4Path}</test.vmargs.default>
-
-		<!-- The p2 repositories url to build against -->
-		<p2repo.url>https://download.eclipse.org/releases/2023-06/</p2repo.url>
-		<targetPlatform>p4e-428</targetPlatform>
+		<targetPlatform>p4e-434</targetPlatform>
 	</properties>
+
+<!--  do not configure any repositories in pom, configure in settings.xml instead.  RT 9/6/13
+	<pluginRepositories>
+		<pluginRepository>
+			<id>maven.eclipse.org</id>
+			<url>http://maven.eclipse.org/nexus/content/groups/public/</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>tycho</id>
+			<url>https://oss.sonatype.org/content/groups/public/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+-->
 
 	<build>
 		<plugins>
@@ -55,8 +79,15 @@
 			                <version>${project.version}</version>
 			                <classifier>${targetPlatform}</classifier> 
 			            </artifact> 
-			        </target> 
-				
+			        </target>
+
+					<!-- Force JavaSE-17 for target resolution. Without this, Tycho 4.x infers the
+					     execution environment from bundle manifests, and every p4eclipse plugin still
+					     declares the stale Bundle-RequiredExecutionEnvironment: JavaSE-1.6, which made
+					     newer platform bundles (e.g. org.eclipse.core.jobs, requires JavaSE-17)
+					     unresolvable. -->
+					<executionEnvironment>JavaSE-17</executionEnvironment>
+
 					<!-- configure the p2 target environments for multi-platform build -->
 					<environments>
 						<environment>
@@ -75,6 +106,132 @@
 							<arch>x86_64</arch>
 						</environment>
 					</environments>
+
+					<!-- These launcher fragments exist only in the old Eclipse Mars p2 repo
+					     (verified 2026-09-08 by diffing Mars's real content.jar against the
+					     current 2024-12 repo's) and are no longer served from anywhere we can
+					     reach. linux.ppc64le is deliberately NOT filtered - it exists in both
+					     Mars and 2024-12, so it resolves fine via the current repo. aix.ppc and
+					     linux.s390 are confirmed-broken (hit in CI); the rest are verified absent
+					     from 2024-12 the same way, not guessed. -->
+					<filters>
+						<filter>
+							<type>p2-installable-unit</type>
+							<id>org.eclipse.equinox.launcher.gtk.aix.ppc</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>p2-installable-unit</type>
+							<id>org.eclipse.equinox.launcher.gtk.aix.ppc64</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>p2-installable-unit</type>
+							<id>org.eclipse.equinox.launcher.gtk.linux.s390</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>p2-installable-unit</type>
+							<id>org.eclipse.equinox.launcher.gtk.linux.s390x</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>p2-installable-unit</type>
+							<id>org.eclipse.equinox.launcher.gtk.linux.ppc</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>p2-installable-unit</type>
+							<id>org.eclipse.equinox.launcher.gtk.linux.ppc64</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>p2-installable-unit</type>
+							<id>org.eclipse.equinox.launcher.gtk.linux.x86</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>p2-installable-unit</type>
+							<id>org.eclipse.equinox.launcher.gtk.hpux.ia64</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>p2-installable-unit</type>
+							<id>org.eclipse.equinox.launcher.gtk.solaris.sparc</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>p2-installable-unit</type>
+							<id>org.eclipse.equinox.launcher.gtk.solaris.x86</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>p2-installable-unit</type>
+							<id>org.eclipse.equinox.launcher.win32.win32.x86</id>
+							<removeAll />
+						</filter>
+						<!-- Same dead-platform reasoning as the equinox.launcher filters
+						     above, but for the sibling org.eclipse.swt fragment family -
+						     these are the ones actually observed causing hard failures
+						     (ConnectException/ClosedChannelException from the same broken
+						     Mars mirror), not just MD5-digest warnings. linux.ppc64le is
+						     deliberately NOT filtered here either, for the same reason. -->
+						<filter>
+							<type>p2-installable-unit</type>
+							<id>org.eclipse.swt.gtk.aix.ppc</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>p2-installable-unit</type>
+							<id>org.eclipse.swt.gtk.aix.ppc64</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>p2-installable-unit</type>
+							<id>org.eclipse.swt.gtk.linux.s390</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>p2-installable-unit</type>
+							<id>org.eclipse.swt.gtk.linux.s390x</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>p2-installable-unit</type>
+							<id>org.eclipse.swt.gtk.linux.ppc</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>p2-installable-unit</type>
+							<id>org.eclipse.swt.gtk.linux.ppc64</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>p2-installable-unit</type>
+							<id>org.eclipse.swt.gtk.linux.x86</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>p2-installable-unit</type>
+							<id>org.eclipse.swt.gtk.hpux.ia64</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>p2-installable-unit</type>
+							<id>org.eclipse.swt.gtk.solaris.sparc</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>p2-installable-unit</type>
+							<id>org.eclipse.swt.gtk.solaris.x86</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>p2-installable-unit</type>
+							<id>org.eclipse.swt.win32.win32.x86</id>
+							<removeAll />
+						</filter>
+					</filters>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -160,7 +317,7 @@
 			</activation>
 			<repositories>
 				<repository>
-					<id>eclipse-p2-repo</id>
+					<id>eclipse-p2-virtual</id>
 					<layout>p2</layout>
 					<url>${p2repo.url}</url>
 				</repository>
@@ -247,6 +404,17 @@
 			</repositories>
 		</profile>
 		
+		<!-- profile>
+			<id>p4patch</id>
+			<activation>
+				<property>
+					<name>!qualifier</name>
+				</property>
+			</activation>
+			<properties>
+				<forceContextQualifier></forceContextQualifier>
+			</properties>
+		</profile -->
 
 		<profile>
 			<!-- as a workaround for TYCHO-520, only build mac binaries on macs -->
@@ -277,7 +445,7 @@
 						<groupId>${tycho-groupid}</groupId>
 						<artifactId>tycho-surefire-plugin</artifactId>
 						<version>${tycho-version}</version>
-					</plugin>					
+					</plugin>
 				</plugins>
 			</build>
 		</profile>

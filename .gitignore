@@ -1,3 +1,15 @@
+# Track only the GitHub project files; everything else in this directory
+# (Perforce workspace files, .p4config.txt, etc.) is ignored.
+/*
+!/3.7/
+!/devtools/
+!/doc/
+!/.gitignore
+!/LICENSE.txt
+!/README.md
+!/build.bat
+!/build.sh
+
 # Compiled class file
 *.class
 
@@ -16,3 +28,8 @@ target/
 # macOS
 .DS_Store
 
+
+# Perforce-only files that must not be published
+/3.7/build/p4eclipse_parent/build.xml
+/3.7/build/p4eclipse_parent/m2_settings_templ.xml
+CLAUDE.md

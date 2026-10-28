@@ -8,6 +8,7 @@ import java.text.MessageFormat;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.team.ui.synchronize.ResourceScope;
 import org.eclipse.team.ui.synchronize.SubscriberParticipant;
+import org.eclipse.ui.IWorkbenchPart;
 
 import com.perforce.team.ui.PerforceUIPlugin;
 import com.perforce.team.ui.synchronize.PerforceSynchronizeParticipant;
@@ -30,12 +31,17 @@ public class TeamSynchronizeAction extends P4Action {
             perforceParticipant = PerforceSynchronizeParticipant
                     .addParticipant(new ResourceScope(localResources));
         }
+        // getActivePart() can legitimately return null (e.g. no part
+        // currently active) - guard against it rather than letting refresh()
+        // never get called at all.
+        IWorkbenchPart activePart = PerforceUIPlugin.getActivePage()
+                .getActivePart();
         perforceParticipant.refresh(localResources,
                 Messages.TeamSynchronizeAction_SychronizingTitle,
                 MessageFormat.format(
                         Messages.TeamSynchronizeAction_SynchronizingMessage,
-                        perforceParticipant.getName()), PerforceUIPlugin
-                        .getActivePage().getActivePart().getSite());
+                        perforceParticipant.getName()),
+                activePart != null ? activePart.getSite() : null);
     }
 
     /**

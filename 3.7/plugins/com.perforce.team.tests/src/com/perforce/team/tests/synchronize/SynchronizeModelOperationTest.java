@@ -114,6 +114,20 @@ public abstract class SynchronizeModelOperationTest extends
         PerforceSynchronizeParticipant participant = new PerforceSynchronizeParticipant();
         SynchronizePageConfiguration configuration = new SynchronizePageConfiguration(
                 participant);
+        // Must set a valid mode before SubscriberParticipantPage is
+        // constructed - its constructor calls updateMode() eagerly, which
+        // throws IllegalArgumentException unless the mode is one of
+        // INCOMING, OUTGOING, BOTH, or CONFLICTING (the default, unset mode
+        // is 0). BOTH_MODE is safe here regardless of subclass: each one's
+        // own getSyncInfoFilter() already narrows to the direction it needs.
+        // setMode() silently no-ops unless the mode is one of the page's
+        // supported modes (SynchronizePageConfiguration#isModeSupported),
+        // which defaults to none - so the supported modes must be widened
+        // first, same as PerforceSynchronizeParticipant#initializeConfiguration
+        // does for the production code path (participant.createPageConfiguration()),
+        // which this manually-built configuration bypasses.
+        configuration.setSupportedModes(ISynchronizePageConfiguration.ALL_MODES);
+        configuration.setMode(ISynchronizePageConfiguration.BOTH_MODE);
         configuration.setPage(new SubscriberParticipantPage(configuration,
                 new SubscriberSyncInfoCollector(PerforceSubscriber
                         .getSubscriber(), new IResource[] { project })));
